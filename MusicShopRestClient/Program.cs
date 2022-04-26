@@ -1,12 +1,25 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Typin;
+using Typin.Attributes;
+using Typin.Console;
 
-namespace MusicShopRestClient
+await new CliApplicationBuilder()
+	.RegisterMode<Typin.Modes.InteractiveMode>(true)
+	.UseStartupMessage("Welcome to SoundKraut")
+	.AddDirectivesFromThisAssembly()
+	.AddCommandsFromThisAssembly()
+	.Build()
+	.RunAsync();
+
+namespace MusicShopRestClient.Cli
 {
-	class Program
+	[Command("hello", Description = "Command that hello's worlds")]
+	public class HelloCommand : ICommand
 	{
-		static void Main(string[] args)
+		public async ValueTask ExecuteAsync(IConsole console)
 		{
-			Console.WriteLine("Hello World!");
+			await console.Output.WriteLineAsync("world");
 		}
 	}
 }
