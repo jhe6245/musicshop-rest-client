@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using MusicShopRestClient.Dto;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,15 +15,14 @@ namespace MusicShopRestClient.Services.Search
 			this.client = client;
 		}
 
-		public async Task<List<string>> Search(string name)
+		public async Task<List<SearchResult>> Query(string title, string artist, string genre)
 		{
-			return new List<string> { "todo", "..." };
+			return await client.GetJsonAsync<List<SearchResult>>("search/query", new { title, artist, genre });
 		}
 
-		public async Task<string> SearchById(string id)
+		public async Task<ProductDetails> SearchById(string id)
 		{
-			var response = await client.ExecuteGetAsync(new RestRequest($"/id/{id}"));
-			return response.Content;
+			return await client.GetJsonAsync<ProductDetails>($"search/id/{id}");
 		}
 	}
 }
