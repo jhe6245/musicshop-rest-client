@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Typin;
 using Typin.Attributes;
 using Typin.Console;
+using Typin.Utilities;
 
 namespace MusicShopRestClient.Commands
 {
-	[Command("login")]
+	[Command("login", Description = "Log in with your account")]
 	public class LogInCommand : ICommand
 	{
 		private readonly RestClient restClient;
@@ -31,9 +32,7 @@ namespace MusicShopRestClient.Commands
 			}
 			catch(Exception ex)
 			{
-				await Task.WhenAll(
-					console.Error.WriteLineAsync(ex.ToString()),
-					console.Output.WriteLineAsync($"Error: {ex.Message}"));
+				console.Output.WriteException(ex);
 			}
 		}
 	}
