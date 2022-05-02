@@ -1,4 +1,4 @@
-using MusicShopRestClient.Services.Search;
+using MusicShopRestClient.Services.Basket;
 using System.Threading.Tasks;
 using Typin;
 using Typin.Attributes;
@@ -21,7 +21,7 @@ namespace MusicShopRestClient.Commands.Basket
 
 		public async ValueTask ExecuteAsync(IConsole console)
 		{
-			var result = await searchService.SearchById(Id);
+			var result = await basketService.AddOnce(Id);
 
 			await console.Output.WriteLineAsync(result?.ToString() ?? "not found.");
 		}
