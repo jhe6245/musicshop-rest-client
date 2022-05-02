@@ -15,10 +15,10 @@ namespace MusicShopRestClient.Services.Basket
 			this.client = client;
 		}
 
-		public async Task<RestResponse> AddOnce(string id)
+		public async Task<string> AddOnce(string id)
         {
-			RestResponse debug = await client.PutAsync(new RestRequest($"basket/add/{id}"));
-			return debug;
+			RestResponse response = await client.PutAsync(new RestRequest($"basket/add/{id}"));
+			return response.Content;
         }
 	}
 }
