@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MusicShopRestClient.Services.Search;
+using MusicShopRestClient.Services.Basket;
+using System;
 using Typin;
 using RestSharp;
 using Typin.Modes;
@@ -16,6 +18,7 @@ await new CliApplicationBuilder()
 	{
 		s.AddSingleton<RestClient>(restClient);
 		s.AddSingleton<SearchService>();
+		s.AddSingleton<BasketService>();
 	})
 	.Build()
 	.RunAsync();
