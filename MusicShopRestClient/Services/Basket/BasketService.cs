@@ -36,5 +36,11 @@ namespace MusicShopRestClient.Services.Basket
 			return await client.GetJsonAsync<List<BasketEntry>>("basket");
 		}
 
+		public async Task<string> Remove(string id)
+        {
+			RestResponse response = await client.DeleteAsync(new RestRequest($"basket/remove/{id}"));
+			return response.Content;
+		}
+
 	}
 }
