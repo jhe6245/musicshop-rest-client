@@ -30,5 +30,11 @@ namespace MusicShopRestClient.Services.Basket
 			if(!response.IsSuccessful)
 				throw response.ErrorException ?? new Exception(response.StatusDescription);
 		}
+
+		public async Task<List<BasketEntry>> Display()
+		{
+			return await client.GetJsonAsync<List<BasketEntry>>("basket");
+		}
+
 	}
 }
