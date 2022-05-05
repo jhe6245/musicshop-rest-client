@@ -7,11 +7,11 @@ using Typin.Console;
 namespace MusicShopRestClient.Commands.Search
 {
 	[Command("details", Description = "Get details about a product using its id / product number.")]
-	public class DetailsCommand : ICommand
+	public class Details : ICommand
 	{
 		private readonly SearchService searchService;
 
-		public DetailsCommand(SearchService searchService)
+		public Details(SearchService searchService)
 		{
 			this.searchService = searchService;
 		}

@@ -10,11 +10,11 @@ using Typin.Utilities;
 namespace MusicShopRestClient.Commands
 {
 	[Command("login", Description = "Log in with your account")]
-	public class LogInCommand : ICommand
+	public class LogIn : ICommand
 	{
 		private readonly RestClient restClient;
 
-		public LogInCommand(RestClient restClient)
+		public LogIn(RestClient restClient)
 		{
 			this.restClient = restClient;
 		}
@@ -27,7 +27,7 @@ namespace MusicShopRestClient.Commands
 		{
 			try
 			{
-				await restClient.UseBearerAuth("authentication", UserName, Password);
+				await BearerTokenAuthenticator.AuthenticateClient(restClient, "authentication", UserName, Password);
 				await console.Output.WriteLineAsync("Success");
 			}
 			catch(Exception ex)

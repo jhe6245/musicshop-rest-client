@@ -9,11 +9,11 @@ using Typin.Utilities;
 namespace MusicShopRestClient.Commands.Basket
 {
 	[Command("basket add", Description = "Add wares to your basket.")]
-	public class BasketAddCommand : ICommand
+	public class Add : ICommand
 	{
 		private readonly BasketService basketService;
 
-		public BasketAddCommand(BasketService basketService)
+		public Add(BasketService basketService)
 		{
 			this.basketService = basketService;
 		}

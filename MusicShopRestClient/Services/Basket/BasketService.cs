@@ -25,10 +25,7 @@ namespace MusicShopRestClient.Services.Basket
 
 		public async Task Add(string id, int amount)
         {
-			RestResponse response = await client.PutAsync(new RestRequest($"basket/add/{id}/{amount}"));
-			
-			if(!response.IsSuccessful)
-				throw response.ErrorException ?? new Exception(response.StatusDescription);
+			await client.PutAsync(new RestRequest($"basket/add/{id}/{amount}"));
 		}
 
 		public async Task<List<BasketEntry>> Display()
@@ -36,10 +33,9 @@ namespace MusicShopRestClient.Services.Basket
 			return await client.GetJsonAsync<List<BasketEntry>>("basket");
 		}
 
-		public async Task<string> Remove(string id)
+		public async Task Remove(string id)
         {
-			RestResponse response = await client.DeleteAsync(new RestRequest($"basket/remove/{id}"));
-			return response.Content;
+			await client.DeleteAsync(new RestRequest($"basket/remove/{id}"));
 		}
 
 	}

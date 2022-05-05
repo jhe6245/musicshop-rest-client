@@ -1,17 +1,19 @@
 using MusicShopRestClient.Services.Basket;
+using System;
 using System.Threading.Tasks;
 using Typin;
 using Typin.Attributes;
 using Typin.Console;
+using Typin.Utilities;
 
 namespace MusicShopRestClient.Commands.Basket
 {
 	[Command("remove", Description = "Remove a release from your own basket")]
-	public class RemoveCommand : ICommand
+	public class Remove : ICommand
 	{
 		private readonly BasketService basketService;
 
-		public RemoveCommand(BasketService basketService)
+		public Remove(BasketService basketService)
 		{
 			this.basketService = basketService;
 		}
@@ -21,10 +23,16 @@ namespace MusicShopRestClient.Commands.Basket
 
 		public async ValueTask ExecuteAsync(IConsole console)
 		{
-			var result = await basketService.Remove(Id);
-
-			//await console.Output.WriteLineAsync(result?.ToString() ?? "not found.");
-			await console.Output.WriteLineAsync(result."Release removed" ?? "Release not removed.");
+			try
+			{
+				await basketService.Remove(Id);
+				await console.Output.WriteLineAsync("Release removed");
+			}
+			catch (Exception ex)
+			{
+				await console.Output.WriteLineAsync("Failed:");
+				console.Output.WriteException(ex);
+			}
 		}
 	}
 }

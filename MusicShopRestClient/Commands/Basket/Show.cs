@@ -1,23 +1,20 @@
 ﻿using MusicShopRestClient.Services.Basket;
-using System;
 using System.Threading.Tasks;
 using Typin;
 using Typin.Attributes;
 using Typin.Console;
-using Typin.Utilities;
 
 namespace MusicShopRestClient.Commands.Basket
 {
-	[Command("basket", Description = "Get items in Basket.")]
-	public class DisplayBasket : ICommand
+	[Command("basket show", Description = "Get items in Basket.")]
+	public class Show : ICommand
 	{
 		private readonly BasketService basketService;
 
-		public DisplayBasket(BasketService basketService)
+		public Show(BasketService basketService)
 		{
 			this.basketService = basketService;
 		}
-
 
 		public async ValueTask ExecuteAsync(IConsole console)
 		{

@@ -8,14 +8,14 @@ namespace MusicShopRestClient.Rest
 	{
 		public string Token { get; init; }
 
-		public static async Task<BearerTokenAuthenticator> FromCredentials(RestClient client, string resource, Credentials credentials)
+		public static async Task AuthenticateClient(RestClient client, string authenticatorResource, string username, string password)
 		{
-			var response = await client.PostAsync(new RestRequest(resource).AddJsonBody(credentials));
-			
-			if (response.StatusCode != System.Net.HttpStatusCode.OK)
-				throw new System.Exception($"failed to authenticate {response.StatusCode} {response.StatusDescription}");
+			var request = new RestRequest(authenticatorResource).AddJsonBody(new { username, password });
+			var response = await client.PostAsync(request);
 
-			return new BearerTokenAuthenticator { Token = response.Content };
+			var authenticator = new BearerTokenAuthenticator { Token = response.Content };
+
+			client.UseAuthenticator(authenticator);
 		}
 
 		public ValueTask Authenticate(RestClient client, RestRequest request)
