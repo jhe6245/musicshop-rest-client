@@ -22,6 +22,6 @@ namespace MusicShopRestClient.Commands.Basket
 		public int Amount { get; set; } = 1;
 
 		public async ValueTask ExecuteAsync(IConsole console)
-			=> await (Amount == 1 ? basketService.AddOnce(Id) : basketService.Add(Id, Amount)).ThenPrintSuccess(console);
+			=> await (Amount == 1 ? basketService.AddOnce(Id) : basketService.Add(Id, Amount)).ThenWriteSuccess(console);
 	}
 }

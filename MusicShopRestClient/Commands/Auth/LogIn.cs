@@ -24,6 +24,6 @@ namespace MusicShopRestClient.Commands
 		public async ValueTask ExecuteAsync(IConsole console)
 			=> await BearerTokenAuthenticator
 			.AuthenticateClient(restClient, "authentication", UserName, Password)
-			.ThenPrintSuccess(console);
+			.ThenWriteSuccess(console);
 	}
 }

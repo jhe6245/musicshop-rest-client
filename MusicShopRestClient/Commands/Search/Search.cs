@@ -1,8 +1,14 @@
 ﻿using MusicShopRestClient.Services.Search;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
 using Typin;
 using Typin.Attributes;
 using Typin.Console;
+using Typin.Utilities;
 
 namespace MusicShopRestClient.Commands.Search
 {
@@ -25,7 +31,8 @@ namespace MusicShopRestClient.Commands.Search
 		public async ValueTask ExecuteAsync(IConsole console)
 		{
 			var results = await searchService.Query(Title, Artist, Genre);
-			await console.Output.WriteLineAsync(string.Join(console.Output.NewLine, results));
+
+			console.Output.WriteTable(results);
 		}
 	}
 }

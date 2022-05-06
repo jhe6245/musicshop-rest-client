@@ -19,6 +19,6 @@ namespace MusicShopRestClient.Commands.Basket
 		[CommandParameter(0)] public string Id { get; set; }
 
 		public async ValueTask ExecuteAsync(IConsole console)
-			=> await basketService.Remove(Id).ThenPrintSuccess(console);
+			=> await basketService.Remove(Id).ThenWriteSuccess(console);
 	}
 }

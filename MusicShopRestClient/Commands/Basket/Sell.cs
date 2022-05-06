@@ -20,6 +20,6 @@ namespace MusicShopRestClient.Commands.Basket
 		public string CustomerNumber { get; set; }
 
 		public async ValueTask ExecuteAsync(IConsole console)
-			=> await basketService.SellTo(CustomerNumber).ThenPrintSuccess(console);
+			=> await basketService.SellTo(CustomerNumber).ThenWriteSuccess(console);
 	}
 }
