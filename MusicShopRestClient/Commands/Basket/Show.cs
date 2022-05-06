@@ -6,7 +6,7 @@ using Typin.Console;
 
 namespace MusicShopRestClient.Commands.Basket
 {
-	[Command("basket show", Description = "Get items in Basket.")]
+	[Command("basket", Description = "Get items in Basket.")]
 	public class Show : ICommand
 	{
 		private readonly BasketService basketService;

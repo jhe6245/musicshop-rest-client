@@ -8,7 +8,7 @@ namespace MusicShopRestClient.Rest
 	{
 		public string Token { get; init; }
 
-		public static async Task AuthenticateClient(RestClient client, string authenticatorResource, string username, string password)
+		public static async ValueTask AuthenticateClient(RestClient client, string authenticatorResource, string username, string password)
 		{
 			var request = new RestRequest(authenticatorResource).AddJsonBody(new { username, password });
 			var response = await client.PostAsync(request);

@@ -10,8 +10,4 @@
     <PackageReference Include="Typin" Version="3.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Basket\" />
-  </ItemGroup>
-
 </Project>

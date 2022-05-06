@@ -6,7 +6,7 @@ using Typin.Console;
 
 namespace MusicShopRestClient.Commands.Search
 {
-	[Command("details", Description = "Get details about a product using its id / product number.")]
+	[Command("details", Description = "Get details about a product.")]
 	public class Details : ICommand
 	{
 		private readonly SearchService searchService;
@@ -16,14 +16,13 @@ namespace MusicShopRestClient.Commands.Search
 			this.searchService = searchService;
 		}
 
-		[CommandParameter(0)]
+		[CommandParameter(0, Description = " The product's id / product number")]
 		public string Id { get; set; }
 
 		public async ValueTask ExecuteAsync(IConsole console)
 		{
 			var result = await searchService.SearchById(Id);
-
-			await console.Output.WriteLineAsync(result?.ToString() ?? "not found.");
+			await console.Output.WriteLineAsync(result?.ToString() ?? "Not found.");
 		}
 	}
 }

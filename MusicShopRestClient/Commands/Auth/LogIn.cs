@@ -1,11 +1,9 @@
 ﻿using MusicShopRestClient.Rest;
 using RestSharp;
-using System;
 using System.Threading.Tasks;
 using Typin;
 using Typin.Attributes;
 using Typin.Console;
-using Typin.Utilities;
 
 namespace MusicShopRestClient.Commands
 {
@@ -24,16 +22,8 @@ namespace MusicShopRestClient.Commands
 		[CommandParameter(1)] public string Password { get; set; }
 
 		public async ValueTask ExecuteAsync(IConsole console)
-		{
-			try
-			{
-				await BearerTokenAuthenticator.AuthenticateClient(restClient, "authentication", UserName, Password);
-				await console.Output.WriteLineAsync("Success");
-			}
-			catch(Exception ex)
-			{
-				console.Output.WriteException(ex);
-			}
-		}
+			=> await BearerTokenAuthenticator
+			.AuthenticateClient(restClient, "authentication", UserName, Password)
+			.ThenPrintSuccess(console);
 	}
 }

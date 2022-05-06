@@ -16,14 +16,11 @@ namespace MusicShopRestClient.Commands.Search
 			this.searchService = searchService;
 		}
 
-		[CommandOption("title")]
-		public string Title { get; set; }
+		[CommandOption] public string Title { get; set; }
 
-		[CommandOption("artist")]
-		public string Artist { get; set; }
+		[CommandOption] public string Artist { get; set; }
 
-		[CommandOption("genre")]
-		public string Genre { get; set; }
+		[CommandOption] public string Genre { get; set; }
 
 		public async ValueTask ExecuteAsync(IConsole console)
 		{
