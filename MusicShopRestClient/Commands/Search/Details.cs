@@ -22,7 +22,15 @@ namespace MusicShopRestClient.Commands.Search
 		public async ValueTask ExecuteAsync(IConsole console)
 		{
 			var result = await searchService.SearchById(Id);
-			await console.Output.WriteLineAsync(result?.ToString() ?? "Not found.");
+
+			if(result == null)
+			{
+				await console.Output.WriteLineAsync("Not found.");
+				return;
+			}
+
+			console.Output.WriteTable(new[] { result });
+			console.Output.WriteTable(result.Recordings);
 		}
 	}
 }
