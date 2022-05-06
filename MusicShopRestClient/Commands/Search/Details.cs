@@ -16,7 +16,7 @@ namespace MusicShopRestClient.Commands.Search
 			this.searchService = searchService;
 		}
 
-		[CommandParameter(0, Description = " The product's id / product number")]
+		[CommandParameter(0, Description = "The product's id / product number")]
 		public string Id { get; set; }
 
 		public async ValueTask ExecuteAsync(IConsole console)
