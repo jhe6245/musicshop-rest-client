@@ -30,5 +30,8 @@ namespace MusicShopRestClient.Services.Basket
 
 		public async ValueTask SellTo(string customerId)
 			=> await client.PostAsync(new RestRequest("basket/sell").AddQueryParameter("customer", customerId));
+
+		public async ValueTask Clear()
+			=> await client.DeleteAsync(new RestRequest("basket/clear"));
 	}
 }
