@@ -19,7 +19,7 @@ namespace MusicShopRestClient.Commands.Basket
 		public async ValueTask ExecuteAsync(IConsole console)
 		{
 			var results = await basketService.Display();
-			await console.Output.WriteLineAsync(string.Join(console.Output.NewLine, results));
+			console.Output.WriteTable(results);
 		}
 	}
 }
