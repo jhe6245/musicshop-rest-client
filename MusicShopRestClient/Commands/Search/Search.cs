@@ -31,7 +31,6 @@ namespace MusicShopRestClient.Commands.Search
 		public async ValueTask ExecuteAsync(IConsole console)
 		{
 			var results = await searchService.Query(Title, Artist, Genre);
-
 			console.Output.WriteTable(results);
 		}
 	}

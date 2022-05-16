@@ -29,7 +29,7 @@ namespace MusicShopRestClient.Commands.Search
 				return;
 			}
 
-			console.Output.WriteTable(new[] { result });
+			console.Output.WriteTable(new[] { result }, nameof(ProductDetails.Recordings));
 			console.Output.WriteTable(result.Recordings);
 		}
 	}
