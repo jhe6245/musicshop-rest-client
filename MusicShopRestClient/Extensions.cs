@@ -14,7 +14,10 @@ namespace MusicShopRestClient
 	public static class Extensions
 	{
 		public static async ValueTask ThenWriteSuccess(this ValueTask task, IConsole console)
-			=> await task.AsTask().ContinueWith(t => console.Output.WriteLineAsync("Success"));
+		{
+			await task;
+			await console.Output.WriteLineAsync("Success");
+		}
 
 		public static void WriteTable<T>(this StandardStreamWriter stream, IEnumerable<T> items, params string[] ignoredProperties)
 		{
