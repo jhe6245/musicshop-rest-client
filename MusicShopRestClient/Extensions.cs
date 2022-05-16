@@ -22,19 +22,21 @@ namespace MusicShopRestClient
 		public static void WriteTable<T>(this StandardStreamWriter stream, IEnumerable<T> items, params string[] ignoredProperties)
 		{
 			var properties = typeof(T).GetProperties().Where(p => !ignoredProperties.Contains(p.Name));
-			var names = properties.Select(p => p.Name);
+			var headers = properties.Select(p => p.Name);
 			var selectors = properties.Select<PropertyInfo, Expression<Func<T, string>>>(p =>
 			{
-				var gt = p.PropertyType.GetInterfaces().Where(i => i.IsGenericType).Select(i => i.GetGenericTypeDefinition());
+				var interfaces = p.PropertyType
+					.GetInterfaces()
+					.Where(i => i.IsGenericType)
+					.Select(i => i.GetGenericTypeDefinition());
 
-				if (gt.Contains(typeof(IEnumerable<>)) && p.PropertyType != typeof(string))
-					return r => string.Join(", ", (p.GetValue(r) as IEnumerable).OfType<object>());
-
+				if (p.PropertyType != typeof(string) && interfaces.Contains(typeof(IEnumerable<>)))
+					return r => string.Join(", ", p.GetValue(r) as IEnumerable<object>);
 
 				return r => p.GetValue(r).ToString();
 			});
 
-			TableUtils.Write(stream, items, names, null, selectors.ToArray());
+			TableUtils.Write(stream, items, headers, null, selectors.ToArray());
 		}
 	}
 }
