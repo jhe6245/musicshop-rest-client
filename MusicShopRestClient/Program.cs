@@ -6,7 +6,7 @@ using MusicShopRestClient;
 using MusicShopRestClient.Services.Search;
 using MusicShopRestClient.Services.Basket;
 
-var baseUrl = "http://localhost:8080/backend-1.0-SNAPSHOT/soundkraut";
+var baseUrl = "http://10.0.40.160:8080/backend-1.0-SNAPSHOT/soundkraut";
 
 var restClient = new RestClient(baseUrl);
 

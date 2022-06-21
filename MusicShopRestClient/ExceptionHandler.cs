@@ -16,7 +16,9 @@ namespace MusicShopRestClient
 
 		public bool HandleException(Exception ex)
 		{
-			console.Output.WriteException(ex);
+			//console.Output.WriteException(ex);
+			System.Diagnostics.Debug.WriteLine(ex);
+			console.Output.WriteLine(ex.Message);
 			return true;
 		}
 	}
