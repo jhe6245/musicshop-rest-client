@@ -1,7 +1,6 @@
 ﻿using System;
 using Typin.Console;
 using Typin.Exceptions;
-using Typin.Utilities;
 
 namespace MusicShopRestClient
 {
